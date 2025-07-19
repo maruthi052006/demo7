@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Upload Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container py-5">
+    <h2>Upload Project</h2>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input name="repository_name" 
+               class="form-control my-2" 
+               placeholder="Repository Name (letters, numbers, hyphens, underscores)" 
+               pattern="^[a-zA-Z0-9_-]+$" 
+               title="Only letters, numbers, hyphens, and underscores allowed. No special characters." 
+               required>
+
+        <input type="file" name="project_zip" class="form-control my-2" accept=".zip" required>
+
+        <button class="btn btn-success w-100">Upload to GitHub</button>
+    </form>
+</div>
+</body>
+</html>
